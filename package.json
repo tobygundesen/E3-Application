@@ -1,0 +1,26 @@
+{
+  "name": "e3-application",
+  "private": true,
+  "homepage": "https://tobygundesen.github.io/E3-Application/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tobygundesen/E3-Application.git"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.5",
+    "vite": "^5.4.1"
+  }
+}
