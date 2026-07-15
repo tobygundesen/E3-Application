@@ -54,9 +54,9 @@ export default function E3Connect() {
   const mentor = mentors[mentorIndex];
 
   return (
-    <div className="h-screen bg-[#001B5E] flex items-center justify-center p-4">
-      <div className="w-[390px] h-[95vh] max-h-[900px] bg-black rounded-[3rem] p-2 shadow-2xl">
-        <div className="relative h-full bg-[#F7F9FC] rounded-[2.5rem] overflow-hidden">
+    <div className="min-h-screen bg-[#001B5E] flex items-center justify-center p-2 sm:p-4">
+      <div className="w-full max-w-[390px] bg-black rounded-2xl sm:rounded-[3rem] p-1 sm:p-2 shadow-2xl h-screen max-h-screen sm:max-h-[900px]">
+        <div className="relative h-full bg-[#F7F9FC] rounded-2xl sm:rounded-[2.5rem] overflow-hidden flex flex-col">
           {screen === 'home' && <HomeScreen setScreen={setScreen} />}
           {screen === 'discover' && (
             <DiscoverScreen
@@ -85,22 +85,22 @@ export default function E3Connect() {
 
 function HomeScreen({ setScreen }) {
   return (
-    <div className="h-full">
-      <div className="bg-[#001B5E] text-white p-5 pt-10 pb-5">
-        <div className="text-sm opacity-80">Welcome to</div>
-        <h1 className="text-4xl font-black">E3 Connect</h1>
-        <p className="mt-3 text-white/80">Connect. Coach. Grow.</p>
+    <div className="h-full flex flex-col">
+      <div className="bg-[#001B5E] text-white p-4 sm:p-5 pt-8 sm:pt-10 pb-4 sm:pb-5">
+        <div className="text-xs sm:text-sm opacity-80">Welcome to</div>
+        <h1 className="text-3xl sm:text-4xl font-black">E3 Connect</h1>
+        <p className="mt-2 sm:mt-3 text-xs sm:text-base text-white/80">Connect. Coach. Grow.</p>
       </div>
 
-      <div className="p-5 pb-20">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-20">
         <button
           onClick={() => setScreen('discover')}
-          className="w-full rounded-3xl bg-[#001B5E] text-white py-6 font-black text-lg"
+          className="w-full rounded-2xl sm:rounded-3xl bg-[#001B5E] text-white py-4 sm:py-6 font-black text-base sm:text-lg"
         >
           Discover Mentors
         </button>
 
-        <div className="mt-8 grid grid-cols-2 gap-4">
+        <div className="mt-6 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4">
           <DashboardCard title="Active Mentors" value="642" />
           <DashboardCard title="Sessions" value="8,420" />
           <DashboardCard title="Avg Rating" value="4.8★" />
@@ -115,47 +115,47 @@ function HomeScreen({ setScreen }) {
 
 function DiscoverScreen({ mentor, mentorIndex, setMentorIndex, mentors, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Discover Mentors" onBack={() => setScreen('home')} />
-      <div className="p-5">
-        <input placeholder="Search mentors..." className="w-full rounded-2xl p-3 mb-4 border border-slate-200" />
-        <div className="flex gap-2 flex-wrap mb-4">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5">
+        <input placeholder="Search mentors..." className="w-full rounded-lg sm:rounded-2xl p-2 sm:p-3 mb-3 sm:mb-4 border border-slate-200 text-sm" />
+        <div className="flex gap-2 flex-wrap mb-3 sm:mb-4">
           {['Supply Chain', 'Leadership', 'Commercial', 'Finance'].map((skill) => (
-            <button key={skill} className="bg-white rounded-full px-3 py-2 text-xs shadow">
+            <button key={skill} className="bg-white rounded-full px-3 py-1 sm:py-2 text-xs shadow">
               {skill}
             </button>
           ))}
         </div>
 
-        <div className="relative h-[320px] rounded-[2rem] overflow-hidden shadow-2xl">
+        <div className="relative h-64 sm:h-80 rounded-xl sm:rounded-[2rem] overflow-hidden shadow-2xl">
           <div className="absolute inset-0 flex items-center justify-center bg-slate-300">
             <div className="flex flex-col items-center">
-              <div className="w-32 h-32 rounded-full bg-white shadow-xl flex items-center justify-center text-6xl">👤</div>
-              <div className="mt-4 text-slate-500 text-sm">Mentor Photo</div>
+              <div className="w-20 sm:w-32 h-20 sm:h-32 rounded-full bg-white shadow-xl flex items-center justify-center text-4xl sm:text-6xl">👤</div>
+              <div className="mt-2 sm:mt-4 text-slate-500 text-xs sm:text-sm">Mentor Photo</div>
             </div>
           </div>
 
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
 
-          <div className="absolute top-4 right-4 bg-white rounded-xl px-3 py-2 z-10">
-            <div className="text-green-600 text-xl font-black">{mentor.match}%</div>
+          <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white rounded-lg sm:rounded-xl px-2 sm:px-3 py-1 sm:py-2 z-10">
+            <div className="text-green-600 text-lg sm:text-xl font-black">{mentor.match}%</div>
             <div className="text-xs">Match</div>
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-            <h2 className="text-3xl font-black">{mentor.name}</h2>
-            <p className="text-sm">{mentor.title}</p>
+          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5 text-white">
+            <h2 className="text-2xl sm:text-3xl font-black">{mentor.name}</h2>
+            <p className="text-xs sm:text-sm">{mentor.title}</p>
             <p className="text-xs mt-1">📍 {mentor.location}</p>
-            <div className="flex flex-wrap gap-2 mt-3">
+            <div className="flex flex-wrap gap-2 mt-2 sm:mt-3">
               {mentor.skills.map((skill) => (
-                <span key={skill} className="bg-white/20 rounded-lg px-3 py-1 text-xs">
+                <span key={skill} className="bg-white/20 rounded-lg px-2 sm:px-3 py-1 text-xs">
                   {skill}
                 </span>
               ))}
             </div>
-            <div className="bg-white/90 rounded-2xl p-3 mt-4 text-[#001B5E]">
-              <div className="font-black">🤖 AI Match Explanation</div>
-              <ul className="text-xs mt-2 space-y-1">
+            <div className="bg-white/90 rounded-lg sm:rounded-2xl p-2 sm:p-3 mt-3 sm:mt-4 text-[#001B5E]">
+              <div className="font-black text-xs sm:text-base">🤖 AI Match Explanation</div>
+              <ul className="text-xs mt-1 sm:mt-2 space-y-1">
                 <li>✓ Similar Supply Chain background</li>
                 <li>✓ Experience in {mentor.skills[0]}</li>
                 <li>✓ Proven coaching experience</li>
@@ -165,12 +165,12 @@ function DiscoverScreen({ mentor, mentorIndex, setMentorIndex, mentors, setScree
           </div>
         </div>
 
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between mt-4 gap-2">
           <button
             onClick={() =>
               setMentorIndex(mentorIndex === 0 ? mentors.length - 1 : mentorIndex - 1)
             }
-            className="bg-white rounded-2xl px-4 py-3 shadow"
+            className="bg-white rounded-lg sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow text-sm"
           >
             ← Previous
           </button>
@@ -179,13 +179,13 @@ function DiscoverScreen({ mentor, mentorIndex, setMentorIndex, mentors, setScree
             onClick={() =>
               setMentorIndex(mentorIndex === mentors.length - 1 ? 0 : mentorIndex + 1)
             }
-            className="bg-white rounded-2xl px-4 py-3 shadow"
+            className="bg-white rounded-lg sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow text-sm"
           >
             Next →
           </button>
         </div>
 
-        <div className="flex justify-center gap-8 mt-6">
+        <div className="flex justify-center gap-4 sm:gap-8 mt-6">
           <ActionButton color="red">✕</ActionButton>
           <ActionButton color="blue" onClick={() => setScreen('profile')}>
             i
@@ -201,18 +201,18 @@ function DiscoverScreen({ mentor, mentorIndex, setMentorIndex, mentors, setScree
 
 function ProfileScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Mentor Profile" onBack={() => setScreen('discover')} />
-      <div className="p-5">
-        <img src={mentor.image} alt={mentor.name} className="w-full h-64 object-cover rounded-[2rem]" />
-        <h2 className="mt-5 text-3xl font-black text-[#001B5E]">{mentor.name}</h2>
-        <p className="text-slate-500">{mentor.title}</p>
-        <div className="bg-green-100 rounded-3xl p-4 mt-4">
-          <div className="font-black text-green-700">🟢 Available This Week</div>
-          <div className="text-sm text-green-700 mt-1">Next available: Thursday 10:00am</div>
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-20">
+        <img src={mentor.image} alt={mentor.name} className="w-full h-40 sm:h-64 object-cover rounded-lg sm:rounded-[2rem]" />
+        <h2 className="mt-4 sm:mt-5 text-2xl sm:text-3xl font-black text-[#001B5E]">{mentor.name}</h2>
+        <p className="text-xs sm:text-base text-slate-500">{mentor.title}</p>
+        <div className="bg-green-100 rounded-2xl sm:rounded-3xl p-3 sm:p-4 mt-4">
+          <div className="font-black text-sm sm:text-base text-green-700">🟢 Available This Week</div>
+          <div className="text-xs sm:text-sm text-green-700 mt-1">Next available: Thursday 10:00am</div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-6">
           <Metric label="Rating" value={mentor.rating} />
           <Metric label="Sessions" value={mentor.sessions} />
           <Metric label="People Coached" value={mentor.coached} />
@@ -221,7 +221,7 @@ function ProfileScreen({ mentor, setScreen }) {
 
         <button
           onClick={() => setScreen('goal')}
-          className="w-full mt-6 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           Connect
         </button>
@@ -232,12 +232,12 @@ function ProfileScreen({ mentor, setScreen }) {
 
 function Header({ title, onBack }) {
   return (
-    <div className="bg-white border-b px-5 pt-8 pb-3">
+    <div className="bg-white border-b px-4 sm:px-5 pt-6 sm:pt-8 pb-2 sm:pb-3">
       <div className="flex items-center gap-3">
-        <button onClick={onBack} className="h-10 w-10 rounded-full bg-slate-100">
+        <button onClick={onBack} className="h-9 sm:h-10 w-9 sm:w-10 rounded-full bg-slate-100 flex items-center justify-center text-sm">
           ←
         </button>
-        <div className="font-black text-[#001B5E]">{title}</div>
+        <div className="font-black text-sm sm:text-base text-[#001B5E]">{title}</div>
       </div>
     </div>
   );
@@ -245,17 +245,17 @@ function Header({ title, onBack }) {
 
 function DashboardCard({ title, value }) {
   return (
-    <div className="bg-white rounded-3xl p-4 shadow">
-      <div className="text-3xl font-black text-[#001B5E]">{value}</div>
-      <div className="text-sm text-slate-500">{title}</div>
+    <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow">
+      <div className="text-2xl sm:text-3xl font-black text-[#001B5E]">{value}</div>
+      <div className="text-xs sm:text-sm text-slate-500">{title}</div>
     </div>
   );
 }
 
 function Metric({ label, value }) {
   return (
-    <div className="bg-white rounded-3xl p-4 shadow">
-      <div className="text-2xl font-black text-[#001B5E]">{value}</div>
+    <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow">
+      <div className="text-xl sm:text-2xl font-black text-[#001B5E]">{value}</div>
       <div className="text-xs text-slate-500 uppercase">{label}</div>
     </div>
   );
@@ -271,7 +271,7 @@ function ActionButton({ children, color, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`h-16 w-16 rounded-full bg-white shadow-xl text-3xl ${colors[color]}`}
+      className={`h-12 sm:h-16 w-12 sm:w-16 rounded-full bg-white shadow-xl text-2xl sm:text-3xl ${colors[color]}`}
     >
       {children}
     </button>
@@ -280,42 +280,42 @@ function ActionButton({ children, color, onClick }) {
 
 function GoalScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Share Your Goal" onBack={() => setScreen('profile')} />
-      <div className="p-4 pb-20 space-y-3 overflow-y-auto">
-        <div className="bg-white rounded-3xl p-4 shadow mb-3">
-          <div className="font-black text-[#001B5E]">Suggested Development Areas</div>
-          <div className="grid grid-cols-2 gap-2 mt-4">
-            <button className="bg-slate-100 rounded-xl py-2 px-3 text-sm">Commercial</button>
-            <button className="bg-slate-100 rounded-xl py-2 px-3 text-sm">Leadership</button>
-            <button className="bg-slate-100 rounded-xl py-2 px-3 text-sm">Financial</button>
-            <button className="bg-slate-100 rounded-xl py-2 px-3 text-sm">Influence</button>
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 pb-20 space-y-2 sm:space-y-3">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow mb-3">
+          <div className="font-black text-sm sm:text-base text-[#001B5E]">Suggested Development Areas</div>
+          <div className="grid grid-cols-2 gap-2 mt-3 sm:mt-4">
+            <button className="bg-slate-100 rounded-lg sm:rounded-xl py-2 px-2 sm:px-3 text-xs sm:text-sm">Commercial</button>
+            <button className="bg-slate-100 rounded-lg sm:rounded-xl py-2 px-2 sm:px-3 text-xs sm:text-sm">Leadership</button>
+            <button className="bg-slate-100 rounded-lg sm:rounded-xl py-2 px-2 sm:px-3 text-xs sm:text-sm">Financial</button>
+            <button className="bg-slate-100 rounded-lg sm:rounded-xl py-2 px-2 sm:px-3 text-xs sm:text-sm">Influence</button>
           </div>
           <button
             onClick={() => setScreen('match')}
-            className="w-full bg-[#001B5E] text-white py-4 rounded-3xl font-black mb-4"
+            className="w-full bg-[#001B5E] text-white py-3 sm:py-4 rounded-xl sm:rounded-3xl font-black mb-4 text-sm sm:text-base mt-3"
           >
             Continue
           </button>
         </div>
 
-        <div className="bg-white rounded-3xl p-5 shadow">
-          <h2 className="text-xl font-black text-[#001B5E]">What do you want to learn?</h2>
-          <div className="mt-4 bg-slate-50 rounded-2xl p-4 text-slate-700">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-5 shadow">
+          <h2 className="text-base sm:text-xl font-black text-[#001B5E]">What do you want to learn?</h2>
+          <div className="mt-3 sm:mt-4 bg-slate-50 rounded-lg sm:rounded-2xl p-3 sm:p-4 text-xs sm:text-base text-slate-700">
             Improve commercial decision making, contract management and stakeholder influence.
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl p-4 shadow mt-3">
-          <h2 className="text-xl font-black text-[#001B5E]">Why is this important?</h2>
-          <div className="mt-4 bg-slate-50 rounded-2xl p-4 text-slate-700">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow mt-2 sm:mt-3">
+          <h2 className="text-base sm:text-xl font-black text-[#001B5E]">Why is this important?</h2>
+          <div className="mt-3 sm:mt-4 bg-slate-50 rounded-lg sm:rounded-2xl p-3 sm:p-4 text-xs sm:text-base text-slate-700">
             I want to prepare for broader leadership responsibilities and accelerate my career growth.
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl p-4 shadow mt-3">
-          <h2 className="text-xl font-black text-[#001B5E]">Desired Outcome</h2>
-          <div className="mt-4 bg-slate-50 rounded-2xl p-4 text-slate-700">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow mt-2 sm:mt-3">
+          <h2 className="text-base sm:text-xl font-black text-[#001B5E]">Desired Outcome</h2>
+          <div className="mt-3 sm:mt-4 bg-slate-50 rounded-lg sm:rounded-2xl p-3 sm:p-4 text-xs sm:text-base text-slate-700">
             Gain practical advice, build confidence and create a clear development plan.
           </div>
         </div>
@@ -328,29 +328,29 @@ function MatchScreen({ mentor, setScreen }) {
   return (
     <div className="h-full flex flex-col">
       <Header title="It's a Match!" onBack={() => setScreen('home')} />
-      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <div className="text-8xl">🎉</div>
-        <h1 className="text-4xl font-black text-[#001B5E] mt-5">Request Sent</h1>
-        <p className="text-slate-600 mt-4">{mentor.name} has received your mentoring request.</p>
-        <div className="bg-white rounded-3xl shadow-lg p-5 mt-8 w-full">
-          <div className="text-lg font-black text-[#001B5E]">Next Step</div>
-          <p className="text-sm text-slate-600 mt-2">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 text-center pb-20">
+        <div className="text-6xl sm:text-8xl">🎉</div>
+        <h1 className="text-3xl sm:text-4xl font-black text-[#001B5E] mt-4 sm:mt-5">Request Sent</h1>
+        <p className="text-xs sm:text-base text-slate-600 mt-3 sm:mt-4">{mentor.name} has received your mentoring request.</p>
+        <div className="bg-white rounded-lg sm:rounded-3xl shadow-lg p-4 sm:p-5 mt-6 sm:mt-8 w-full">
+          <div className="text-base sm:text-lg font-black text-[#001B5E]">Next Step</div>
+          <p className="text-xs sm:text-sm text-slate-600 mt-2">
             Schedule your first coaching session and begin your development journey.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-4 mt-6 w-full">
-          <div className="bg-white rounded-3xl p-4 shadow">
-            <div className="text-2xl font-black text-[#001B5E]">{mentor.rating}</div>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-5 sm:mt-6 w-full">
+          <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow">
+            <div className="text-xl sm:text-2xl font-black text-[#001B5E]">{mentor.rating}</div>
             <div className="text-xs text-slate-500 uppercase">Rating</div>
           </div>
-          <div className="bg-white rounded-3xl p-4 shadow">
-            <div className="text-2xl font-black text-[#001B5E]">{mentor.sessions}</div>
+          <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow">
+            <div className="text-xl sm:text-2xl font-black text-[#001B5E]">{mentor.sessions}</div>
             <div className="text-xs text-slate-500 uppercase">Sessions</div>
           </div>
         </div>
         <button
           onClick={() => setScreen('schedule')}
-          className="w-full mt-8 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 sm:mt-8 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           Schedule Session
         </button>
@@ -361,23 +361,23 @@ function MatchScreen({ mentor, setScreen }) {
 
 function MyMentorsScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="My Mentors" onBack={() => setScreen('home')} />
-      <div className="p-5 pb-24">
-        <div className="bg-[#001B5E] text-white rounded-3xl p-5">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-24">
+        <div className="bg-[#001B5E] text-white rounded-lg sm:rounded-3xl p-4 sm:p-5">
           <div className="text-xs opacity-70">Upcoming Session</div>
-          <div className="text-2xl font-black mt-2">Commercial Capability Coaching</div>
-          <div className="mt-2 text-sm opacity-80">Thursday · 10:00 AM</div>
+          <div className="text-lg sm:text-2xl font-black mt-2">Commercial Capability Coaching</div>
+          <div className="mt-2 text-xs sm:text-sm opacity-80">Thursday · 10:00 AM</div>
         </div>
 
-        <div className="bg-white rounded-3xl p-5 shadow mt-5">
-          <div className="font-black text-[#001B5E]">{mentor.name}</div>
-          <div className="text-sm text-slate-500 mt-1">{mentor.title}</div>
+        <div className="bg-white rounded-lg sm:rounded-3xl p-4 sm:p-5 shadow mt-4 sm:mt-5">
+          <div className="font-black text-sm sm:text-base text-[#001B5E]">{mentor.name}</div>
+          <div className="text-xs sm:text-sm text-slate-500 mt-1">{mentor.title}</div>
         </div>
 
-        <div className="bg-white rounded-3xl p-5 shadow mt-5">
-          <div className="font-black text-[#001B5E]">Session History</div>
-          <ul className="mt-3 text-sm space-y-2">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-4 sm:p-5 shadow mt-4 sm:mt-5">
+          <div className="font-black text-sm sm:text-base text-[#001B5E]">Session History</div>
+          <ul className="mt-3 text-xs sm:text-sm space-y-2">
             <li>✓ Commercial Capability Coaching</li>
             <li>✓ Financial Acumen Discussion</li>
             <li>✓ Leadership Influence Workshop</li>
@@ -386,7 +386,7 @@ function MyMentorsScreen({ mentor, setScreen }) {
 
         <button
           onClick={() => setScreen('messages')}
-          className="w-full mt-6 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           Open Messages
         </button>
@@ -399,19 +399,19 @@ function MyMentorsScreen({ mentor, setScreen }) {
 
 function MessagesScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Messages" onBack={() => setScreen('mentors')} />
-      <div className="p-4 pb-20 space-y-3">
-        <div className="bg-white rounded-3xl p-3 shadow w-[80%]">Great to connect. What would you like to focus on first?</div>
-        <div className="bg-[#001B5E] text-white rounded-3xl p-3 shadow ml-auto w-[80%]">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 pb-20 space-y-2 sm:space-y-3">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-3 shadow w-[80%] text-xs sm:text-base">Great to connect. What would you like to focus on first?</div>
+        <div className="bg-[#001B5E] text-white rounded-lg sm:rounded-3xl p-3 sm:p-3 shadow ml-auto w-[80%] text-xs sm:text-base">
           I want to improve commercial decision making and strengthen P&L understanding.
         </div>
-        <div className="bg-white rounded-3xl p-4 shadow w-[80%]">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow w-[80%] text-xs sm:text-base">
           Excellent. Bring one current business case and we can work through it together.
         </div>
-        <div className="bg-blue-50 rounded-3xl p-4 mt-4">
-          <div className="font-black text-[#001B5E]">AI Coaching Summary</div>
-          <ul className="text-sm mt-3 text-slate-700 space-y-2">
+        <div className="bg-blue-50 rounded-lg sm:rounded-3xl p-3 sm:p-4 mt-4">
+          <div className="font-black text-xs sm:text-base text-[#001B5E]">AI Coaching Summary</div>
+          <ul className="text-xs sm:text-sm mt-2 sm:mt-3 text-slate-700 space-y-2">
             <li>• Focus area: Commercial capability</li>
             <li>• Bring a real business example</li>
             <li>• Create a 30-day development plan</li>
@@ -426,16 +426,16 @@ function MessagesScreen({ mentor, setScreen }) {
 
 function LeaderboardScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Leaderboard" onBack={() => setScreen('messages')} />
-      <div className="p-5 pb-24">
-        <div className="bg-[#001B5E] text-white rounded-3xl p-5">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-24">
+        <div className="bg-[#001B5E] text-white rounded-lg sm:rounded-3xl p-4 sm:p-5">
           <div className="text-xs opacity-70">Top Mentor This Month</div>
-          <div className="text-3xl font-black mt-2">Aisha Ndiovu</div>
-          <div className="mt-2">2380 Points</div>
+          <div className="text-2xl sm:text-3xl font-black mt-2">Aisha Ndiovu</div>
+          <div className="mt-2 text-sm sm:text-base">2380 Points</div>
         </div>
 
-        <div className="space-y-4 mt-5">
+        <div className="space-y-3 sm:space-y-4 mt-5">
           <LeaderboardRow rank="1" name="Aisha Ndiovu" points="2380" />
           <LeaderboardRow rank="2" name="Sophie Martin" points="1245" />
           <LeaderboardRow rank="3" name="Michael Chen" points="780" />
@@ -443,7 +443,7 @@ function LeaderboardScreen({ mentor, setScreen }) {
 
         <button
           onClick={() => setScreen('status')}
-          className="w-full mt-6 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           View Status
         </button>
@@ -456,23 +456,23 @@ function LeaderboardScreen({ mentor, setScreen }) {
 
 function StatusScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Status & Badges" onBack={() => setScreen('plan')} />
-      <div className="p-5 pb-24">
-        <div className="bg-[#001B5E] text-white rounded-3xl p-6">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-24">
+        <div className="bg-[#001B5E] text-white rounded-lg sm:rounded-3xl p-5 sm:p-6">
           <div className="text-xs opacity-70">Current Status</div>
-          <div className="text-3xl font-black mt-2">Advanced Mentor</div>
-          <div className="mt-4">{mentor.points} Points</div>
+          <div className="text-2xl sm:text-3xl font-black mt-2">Advanced Mentor</div>
+          <div className="mt-3 sm:mt-4 text-sm sm:text-base">{mentor.points} Points</div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow p-5 mt-5">
-          <div className="font-black text-[#001B5E]">Progress to Expert</div>
-          <div className="w-full bg-slate-200 rounded-full h-4 mt-4">
-            <div className="bg-green-500 h-4 rounded-full" style={{ width: '62%' }} />
+        <div className="bg-white rounded-lg sm:rounded-3xl shadow p-4 sm:p-5 mt-4 sm:mt-5">
+          <div className="font-black text-sm sm:text-base text-[#001B5E]">Progress to Expert</div>
+          <div className="w-full bg-slate-200 rounded-full h-3 sm:h-4 mt-3 sm:mt-4">
+            <div className="bg-green-500 h-3 sm:h-4 rounded-full" style={{ width: '62%' }} />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-5">
           <BadgeCard icon="🏅" title="Advanced" />
           <BadgeCard icon="⭐" title="Top Rated" />
           <BadgeCard icon="🎯" title="Impact" />
@@ -481,14 +481,14 @@ function StatusScreen({ mentor, setScreen }) {
 
         <button
           onClick={() => setScreen('progress')}
-          className="w-full mt-6 bg-white border border-[#001B5E] text-[#001B5E] py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-white border border-[#001B5E] text-[#001B5E] py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           View Progress Dashboard
         </button>
 
-        <div className="bg-blue-50 rounded-3xl p-5 mt-5">
-          <div className="font-black text-[#001B5E]">🤖 AI Career Insight</div>
-          <p className="text-sm mt-3">
+        <div className="bg-blue-50 rounded-lg sm:rounded-3xl p-4 sm:p-5 mt-4 sm:mt-5">
+          <div className="font-black text-xs sm:text-base text-[#001B5E]">🤖 AI Career Insight</div>
+          <p className="text-xs sm:text-sm mt-2 sm:mt-3">
             Your strongest growth area is Commercial Capability.
             Recommended next focus: Financial Acumen.
           </p>
@@ -496,7 +496,7 @@ function StatusScreen({ mentor, setScreen }) {
 
         <button
           onClick={() => setScreen('home')}
-          className="w-full mt-6 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           Return Home
         </button>
@@ -509,61 +509,61 @@ function StatusScreen({ mentor, setScreen }) {
 
 function LeaderboardRow({ rank, name, points }) {
   return (
-    <div className="bg-white rounded-3xl p-4 shadow flex justify-between">
-      <div className="font-black text-[#001B5E]">#{rank} {name}</div>
-      <div className="font-black">{points}</div>
+    <div className="bg-white rounded-lg sm:rounded-3xl p-3 sm:p-4 shadow flex justify-between">
+      <div className="font-black text-xs sm:text-base text-[#001B5E]">#{rank} {name}</div>
+      <div className="font-black text-xs sm:text-base">{points}</div>
     </div>
   );
 }
 
 function BadgeCard({ icon, title }) {
   return (
-    <div className="bg-white rounded-3xl shadow p-4 text-center">
-      <div className="text-4xl">{icon}</div>
-      <div className="mt-2 font-black text-[#001B5E]">{title}</div>
+    <div className="bg-white rounded-lg sm:rounded-3xl shadow p-3 sm:p-4 text-center">
+      <div className="text-3xl sm:text-4xl">{icon}</div>
+      <div className="mt-2 font-black text-xs sm:text-base text-[#001B5E]">{title}</div>
     </div>
   );
 }
 
 function ScheduleScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Schedule Session" onBack={() => setScreen('match')} />
-      <div className="p-5 pb-24">
-        <div className="bg-[#001B5E] text-white rounded-3xl p-5">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-24">
+        <div className="bg-[#001B5E] text-white rounded-lg sm:rounded-3xl p-4 sm:p-5">
           <div className="text-xs opacity-70">Selected Mentor</div>
-          <div className="text-2xl font-black mt-2">{mentor.name}</div>
-          <div className="text-sm opacity-80 mt-1">{mentor.title}</div>
+          <div className="text-xl sm:text-2xl font-black mt-2">{mentor.name}</div>
+          <div className="text-xs sm:text-sm opacity-80 mt-1">{mentor.title}</div>
         </div>
 
         <div className="mt-6">
-          <h3 className="font-black text-[#001B5E]">Available Dates</h3>
-          <div className="grid grid-cols-3 gap-3 mt-3">
-            <button className="bg-white rounded-2xl p-4 shadow font-black text-[#001B5E]">23 Jul</button>
-            <button className="bg-white rounded-2xl p-4 shadow font-black text-[#001B5E]">24 Jul</button>
-            <button className="bg-white rounded-2xl p-4 shadow font-black text-[#001B5E]">25 Jul</button>
+          <h3 className="font-black text-sm sm:text-base text-[#001B5E]">Available Dates</h3>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-2 sm:mt-3">
+            <button className="bg-white rounded-lg sm:rounded-2xl p-3 sm:p-4 shadow font-black text-xs sm:text-base text-[#001B5E]">23 Jul</button>
+            <button className="bg-white rounded-lg sm:rounded-2xl p-3 sm:p-4 shadow font-black text-xs sm:text-base text-[#001B5E]">24 Jul</button>
+            <button className="bg-white rounded-lg sm:rounded-2xl p-3 sm:p-4 shadow font-black text-xs sm:text-base text-[#001B5E]">25 Jul</button>
           </div>
         </div>
 
         <div className="mt-6">
-          <h3 className="font-black text-[#001B5E]">Available Times</h3>
-          <div className="grid grid-cols-3 gap-3 mt-3">
-            <button className="bg-white rounded-2xl p-4 shadow font-black text-[#001B5E]">10:00</button>
-            <button className="bg-white rounded-2xl p-4 shadow font-black text-[#001B5E]">11:00</button>
-            <button className="bg-white rounded-2xl p-4 shadow font-black text-[#001B5E]">14:00</button>
+          <h3 className="font-black text-sm sm:text-base text-[#001B5E]">Available Times</h3>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-2 sm:mt-3">
+            <button className="bg-white rounded-lg sm:rounded-2xl p-3 sm:p-4 shadow font-black text-xs sm:text-base text-[#001B5E]">10:00</button>
+            <button className="bg-white rounded-lg sm:rounded-2xl p-3 sm:p-4 shadow font-black text-xs sm:text-base text-[#001B5E]">11:00</button>
+            <button className="bg-white rounded-lg sm:rounded-2xl p-3 sm:p-4 shadow font-black text-xs sm:text-base text-[#001B5E]">14:00</button>
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow p-5 mt-6">
-          <div className="font-black text-[#001B5E]">Session Focus</div>
-          <p className="text-sm text-slate-600 mt-2">
+        <div className="bg-white rounded-lg sm:rounded-3xl shadow p-4 sm:p-5 mt-6">
+          <div className="font-black text-sm sm:text-base text-[#001B5E]">Session Focus</div>
+          <p className="text-xs sm:text-sm text-slate-600 mt-2">
             Commercial decision-making, P&L understanding and contract management.
           </p>
         </div>
 
         <button
           onClick={() => setScreen('mentors')}
-          className="w-full mt-6 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           Confirm Session
         </button>
@@ -576,13 +576,13 @@ function ScheduleScreen({ mentor, setScreen }) {
 
 function DevelopmentPlanScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="90 Day Plan" onBack={() => setScreen('messages')} />
-      <div className="p-5 pb-24">
-        <div className="bg-[#001B5E] text-white rounded-3xl p-5">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-24">
+        <div className="bg-[#001B5E] text-white rounded-lg sm:rounded-3xl p-4 sm:p-5">
           <div className="text-xs opacity-70">Development Focus</div>
-          <div className="text-2xl font-black mt-2">Commercial Capability</div>
-          <p className="text-sm opacity-80 mt-2">
+          <div className="text-xl sm:text-2xl font-black mt-2">Commercial Capability</div>
+          <p className="text-xs sm:text-sm opacity-80 mt-2">
             Built from your mentoring goal and coaching discussion with {mentor.name}.
           </p>
         </div>
@@ -605,7 +605,7 @@ function DevelopmentPlanScreen({ mentor, setScreen }) {
 
         <button
           onClick={() => setScreen('status')}
-          className="w-full mt-6 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           Continue to Status
         </button>
@@ -618,23 +618,23 @@ function DevelopmentPlanScreen({ mentor, setScreen }) {
 
 function PlanCard({ month, title, detail }) {
   return (
-    <div className="bg-white rounded-3xl p-5 shadow mt-4">
+    <div className="bg-white rounded-lg sm:rounded-3xl p-4 sm:p-5 shadow mt-3 sm:mt-4">
       <div className="text-xs font-black text-slate-400 uppercase">{month}</div>
-      <div className="text-xl font-black text-[#001B5E] mt-1">{title}</div>
-      <p className="text-sm text-slate-600 mt-2">{detail}</p>
+      <div className="text-lg sm:text-xl font-black text-[#001B5E] mt-1">{title}</div>
+      <p className="text-xs sm:text-sm text-slate-600 mt-2">{detail}</p>
     </div>
   );
 }
 
 function ProgressDashboardScreen({ mentor, setScreen }) {
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Header title="Progress Dashboard" onBack={() => setScreen('status')} />
-      <div className="p-5 pb-24">
-        <div className="bg-[#001B5E] text-white rounded-3xl p-5">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 pb-24">
+        <div className="bg-[#001B5E] text-white rounded-lg sm:rounded-3xl p-4 sm:p-5">
           <div className="text-xs opacity-70">Development Progress</div>
-          <div className="text-3xl font-black mt-2">74%</div>
-          <p className="text-sm opacity-80 mt-2">
+          <div className="text-2xl sm:text-3xl font-black mt-2">74%</div>
+          <p className="text-xs sm:text-sm opacity-80 mt-2">
             Overall progress against your current E3 Connect development plan.
           </p>
         </div>
@@ -643,9 +643,9 @@ function ProgressDashboardScreen({ mentor, setScreen }) {
         <ProgressBar title="Leadership Confidence" value="65%" width="65%" />
         <ProgressBar title="Negotiation Skills" value="82%" width="82%" />
 
-        <div className="bg-white rounded-3xl p-5 shadow mt-5">
-          <div className="font-black text-[#001B5E]">Coaching Impact</div>
-          <ul className="text-sm text-slate-600 mt-3 space-y-2">
+        <div className="bg-white rounded-lg sm:rounded-3xl p-4 sm:p-5 shadow mt-4 sm:mt-5">
+          <div className="font-black text-sm sm:text-base text-[#001B5E]">Coaching Impact</div>
+          <ul className="text-xs sm:text-sm text-slate-600 mt-3 space-y-2">
             <li>• 1 mentor connection created</li>
             <li>• 1 coaching session scheduled</li>
             <li>• 3 development focus areas defined</li>
@@ -655,7 +655,7 @@ function ProgressDashboardScreen({ mentor, setScreen }) {
 
         <button
           onClick={() => setScreen('home')}
-          className="w-full mt-6 bg-[#001B5E] text-white py-5 rounded-3xl font-black"
+          className="w-full mt-6 bg-[#001B5E] text-white py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-sm sm:text-base"
         >
           Return Home
         </button>
@@ -668,13 +668,13 @@ function ProgressDashboardScreen({ mentor, setScreen }) {
 
 function ProgressBar({ title, value, width }) {
   return (
-    <div className="bg-white rounded-3xl p-5 shadow mt-4">
+    <div className="bg-white rounded-lg sm:rounded-3xl p-4 sm:p-5 shadow mt-3 sm:mt-4">
       <div className="flex justify-between items-center">
-        <div className="font-black text-[#001B5E]">{title}</div>
-        <div className="font-black text-[#001B5E]">{value}</div>
+        <div className="font-black text-xs sm:text-base text-[#001B5E]">{title}</div>
+        <div className="font-black text-xs sm:text-base text-[#001B5E]">{value}</div>
       </div>
-      <div className="w-full bg-slate-200 rounded-full h-4 mt-4">
-        <div className="bg-green-500 h-4 rounded-full" style={{ width }} />
+      <div className="w-full bg-slate-200 rounded-full h-3 sm:h-4 mt-3 sm:mt-4">
+        <div className="bg-green-500 h-3 sm:h-4 rounded-full" style={{ width }} />
       </div>
     </div>
   );
@@ -682,7 +682,7 @@ function ProgressBar({ title, value, width }) {
 
 function BottomNav({ activeScreen, setScreen }) {
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-200 rounded-b-[2.5rem] flex justify-around items-center">
+    <div className="absolute bottom-0 left-0 right-0 h-14 sm:h-16 bg-white border-t border-slate-200 rounded-b-2xl sm:rounded-b-[2.5rem] flex justify-around items-center">
       <NavItem label="Home" icon="🏠" active={activeScreen === 'home'} onClick={() => setScreen('home')} />
       <NavItem label="Mentors" icon="👥" active={activeScreen === 'mentors'} onClick={() => setScreen('mentors')} />
       <NavItem label="Messages" icon="💬" active={activeScreen === 'messages'} onClick={() => setScreen('messages')} />
@@ -695,8 +695,8 @@ function BottomNav({ activeScreen, setScreen }) {
 function NavItem({ icon, label, active, onClick }) {
   return (
     <button onClick={onClick} className="flex flex-col items-center justify-center">
-      <div className={`text-xl ${active ? 'text-[#001B5E]' : 'text-slate-400'}`}>{icon}</div>
-      <div className={`text-[10px] font-bold mt-1 ${active ? 'text-[#001B5E]' : 'text-slate-400'}`}>{label}</div>
+      <div className={`text-lg sm:text-xl ${active ? 'text-[#001B5E]' : 'text-slate-400'}`}>{icon}</div>
+      <div className={`text-[9px] sm:text-[10px] font-bold mt-0.5 sm:mt-1 ${active ? 'text-[#001B5E]' : 'text-slate-400'}`}>{label}</div>
     </button>
   );
 }
